@@ -5,7 +5,6 @@ import java.util.Date;
 
 public class ProductData {
 
-
     private String Id;
 
     private BigDecimal Price;
@@ -15,7 +14,6 @@ public class ProductData {
     private Date SnapshotDate;
 
     private String Type;
-
 
     public String getProductId() {
         return Id;
@@ -37,8 +35,7 @@ public class ProductData {
         return Type;
     }
 
-    ProductData(String Id, BigDecimal Price, String Name, Date SnapshotDate, String Type)
-    {
+    ProductData(String Id, BigDecimal Price, String Name, Date SnapshotDate, String Type) {
         this.Id = Id;
         this.Price = Price;
         this.Name = Name;

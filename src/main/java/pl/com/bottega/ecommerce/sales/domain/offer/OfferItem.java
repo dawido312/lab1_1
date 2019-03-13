@@ -21,14 +21,11 @@ public class OfferItem {
 
     private ProductData product;
 
+    private Discount discount;
+
     private BigDecimal totalCost;
 
     private String currency;
-
-    // discount
-    private String discountCause;
-
-    private BigDecimal discount;
 
     public OfferItem(ProductData product, int quantity) {
         this(product, quantity, null, null);
@@ -37,8 +34,7 @@ public class OfferItem {
     public OfferItem(ProductData product, int quantity, BigDecimal discount, String discountCause) {
         this.product = product;
         this.quantity = quantity;
-        this.discount = discount;
-        this.discountCause = discountCause;
+        this.discount = new Discount(discountCause, discount);
 
         BigDecimal discountValue = new BigDecimal(0);
         if (discount != null) {
@@ -56,20 +52,12 @@ public class OfferItem {
         return currency;
     }
 
-    public BigDecimal getDiscount() {
-        return discount;
-    }
-
-    public String getDiscountCause() {
-        return discountCause;
-    }
-
     public int getQuantity() {
         return quantity;
     }
 
     @Override public int hashCode() {
-        return Objects.hash(currency, discount, discountCause, product, quantity, totalCost);
+        return Objects.hash(currency, discount, product, quantity, totalCost);
     }
 
     @Override public boolean equals(Object obj) {
@@ -83,12 +71,8 @@ public class OfferItem {
             return false;
         }
         OfferItem other = (OfferItem) obj;
-        return Objects.equals(currency, other.currency)
-               && Objects.equals(discount, other.discount)
-               && Objects.equals(discountCause, other.discountCause)
-               && Objects.equals(product, other.product)
-               && quantity == other.quantity
-               && Objects.equals(totalCost, other.totalCost);
+        return Objects.equals(currency, other.currency) && Objects.equals(discount, other.discount) && Objects.equals(product,
+                other.product) && quantity == other.quantity && Objects.equals(totalCost, other.totalCost);
     }
 
     /**
@@ -143,8 +127,7 @@ public class OfferItem {
         return acceptableDelta.compareTo(difference) > 0;
     }
 
-    public ProductData getProduct()
-    {
+    public ProductData getProduct() {
         return product;
     }
 
