@@ -15,7 +15,7 @@ package pl.com.bottega.ecommerce.sales.domain.offer;
 import java.math.BigDecimal;
 import java.util.Objects;
 
-public class OfferItem {
+public class OfferItem extends Money {
 
     private int quantity;
 
@@ -25,7 +25,6 @@ public class OfferItem {
 
     private BigDecimal totalCost;
 
-    private String currency;
 
     public OfferItem(ProductData product, int quantity) {
         this(product, quantity, null, null);
@@ -48,16 +47,12 @@ public class OfferItem {
         return totalCost;
     }
 
-    public String getTotalCostCurrency() {
-        return currency;
-    }
-
     public int getQuantity() {
         return quantity;
     }
 
     @Override public int hashCode() {
-        return Objects.hash(currency, discount, product, quantity, totalCost);
+        return Objects.hash(getCurrency(), discount, product, quantity, totalCost);
     }
 
     @Override public boolean equals(Object obj) {
@@ -71,12 +66,12 @@ public class OfferItem {
             return false;
         }
         OfferItem other = (OfferItem) obj;
-        return Objects.equals(currency, other.currency) && Objects.equals(discount, other.discount) && Objects.equals(product,
+        return Objects.equals(getCurrency(), other.getCurrency()) && Objects.equals(discount, other.discount) && Objects.equals(product,
                 other.product) && quantity == other.quantity && Objects.equals(totalCost, other.totalCost);
     }
 
     /**
-     * @param item
+     * //@param item
      * @param delta acceptable percentage difference
      * @return
      */
