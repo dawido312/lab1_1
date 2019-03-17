@@ -2,7 +2,9 @@ package pl.com.bottega.ecommerce.sales.domain.offer;
 
 import java.math.BigDecimal;
 
-public class Discount extends Money {
+public class Discount {
+
+    private Money value = new Money();
 
     private String Cause;
 
@@ -12,7 +14,7 @@ public class Discount extends Money {
 
     Discount(String Cause, BigDecimal value) {
         this.Cause = Cause;
-        setValue(value);
+        this.value.setValue(value);
     }
 
 }

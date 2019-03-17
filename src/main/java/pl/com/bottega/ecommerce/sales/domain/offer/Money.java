@@ -2,7 +2,7 @@ package pl.com.bottega.ecommerce.sales.domain.offer;
 
 import java.math.BigDecimal;
 
-public abstract class Money {
+public class Money {
 
     private String currency;
     private BigDecimal value;
@@ -24,6 +24,9 @@ public abstract class Money {
         this.value = value;
     }
 
-    Money() { };
+    Money() {
+    }
+
+    ;
 
 }
